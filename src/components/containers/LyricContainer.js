@@ -1,32 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Lyric from '../lyrics/Lyric';
 import PropTypes from 'prop-types';
 import getLyrics from '../services/getLyrics';
 
-export default class LyricContainer extends Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired
-  }
+export default function LyricContainer({ match }) {
+  const [lyrics, updateLyrics] = useState('');
 
-  state = {
-    lyrics: '',
-    parsedArtist: decodeURIComponent(this.props.match.params.artist),   
-    parsedSong: decodeURIComponent(this.props.match.params.song)
-  }
+  const parsedArtist = decodeURIComponent(match.params.artist);
+  const parsedSong = decodeURIComponent(match.params.song);
 
-  componentDidMount() {
-    console.log(this.state);
-    return getLyrics(this.state.parsedArtist, this.state.parsedSong)
-      .then(result => this.setState({
-        lyrics: result.lyrics
-      }));
-  }
+  useEffect(() => {
+    getLyrics(parsedArtist, parsedSong)
+      .then(result => {
+        updateLyrics(result.lyrics);
+      });
+  });
 
-  render() {
-    return (
-      <>
-        <Lyric title={this.props.match.params.song} lyrics={this.state.lyrics} />
-      </>
-    );
-  }
+  return (
+    <>
+      <Lyric title={match.params.song} lyrics={lyrics} />
+    </>
+  );
 }
+
+LyricContainer.propTypes = {
+  match: PropTypes.object.isRequired
+};

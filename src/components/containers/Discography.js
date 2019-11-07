@@ -1,63 +1,54 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import PagingButtons from '../paging/PagingButtons';
 import Albums from '../music/Albums';
 import getAlbums from '../services/getAlbums';
-import PropTypes from 'prop-types';
 
-export default class Discography extends Component {
-  static propTypes = {
-    match: PropTypes.object.isRequired
-  }
-  state = {
-    albums: [],
-    page: 0,
-    upDisable: true,
-    downDisable: true
-  }
+export default function Discography({ match }) {
+  const [albums, updateAlbum] = useState([]);
+  const [page, updatePage] = useState(0);
+  const [upDisable, updateUpDisable] = useState(true);
+  const [downDisable, updateDownDisable] = useState(true);
 
-  componentDidMount() {
-    return getAlbums(this.props.match.params.id, this.state.page)
-      .then(result => this.setState({ 
-        albums: result,
-        upDisable: false
-      }));
-  }
+  useEffect(() => {
+    getAlbums(match.params.id, page)
+      .then(result => {
+        updateAlbum(result);
+        updateUpDisable(false);
+      });
+  });
 
-  pageUpFunction = () => {
-    this.setState(state => ({
-      page: state.page + 1
-    }), () => {
-      return getAlbums(this.props.match.params.id, this.state.page)
-        .then(result => this.setState({ 
-          albums: result,
-          downDisable: false
-        }));
-    });
-  } 
+  const handlePageUp = () => {
+    updatePage(prevPage => prevPage + 1);
+    return getAlbums(match.params.id, page)
+      .then(res => {
+        updateAlbum(res);
+        updateDownDisable(false);
+      });
+  };
 
-  pageDownFunction = () => {
-    this.setState(state => ({
-      page: state.page - 1
-    }), () => {
-      return getAlbums(this.props.match.params.id, this.state.page)
-        .then(result => this.setState({ 
-          albums: result,
-          downDisable: this.state.page === 0 ? true : false
-        }));
-    });
-  }
+  const handlePageDown = () => {
+    updatePage(prevPage => prevPage - 1);
+    return getAlbums(match.params.id, page)
+      .then(res => {
+        updateAlbum(res);
+        updateDownDisable(page === 0 ? true : false);
+      });
+  };
 
-  render() {
-    return (
-      <>
-        <PagingButtons 
-          pageUpFunction={this.pageUpFunction}
-          pageDownFunction={this.pageDownFunction}
-          upDisable={this.state.upDisable}
-          downDisable={this.state.downDisable}
-        />
-        <Albums items={this.state.albums} />
-      </>
-    );
-  }
+  return (
+    <>
+      <PagingButtons 
+        pageUpFunction={handlePageUp}
+        pageDownFunction={handlePageDown}
+        upDisable={upDisable}
+        downDisable={downDisable}
+      />
+      <Albums items={albums} />
+    </>
+  );
 }
+
+Discography.propTypes = {
+  match: PropTypes.object.isRequired
+};
