@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Lyric from '../lyrics/Lyric';
 import PropTypes from 'prop-types';
-import getLyrics from '../services/getLyrics';
+import useLyrics from '../../hooks/useLyrics';
 
 export default function LyricContainer({ match }) {
-  const [lyrics, updateLyrics] = useState('');
-
   const parsedArtist = decodeURIComponent(match.params.artist);
   const parsedSong = decodeURIComponent(match.params.song);
-
-  useEffect(() => {
-    getLyrics(parsedArtist, parsedSong)
-      .then(result => {
-        updateLyrics(result.lyrics);
-      });
-  }, [parsedArtist, parsedSong]);
+  const lyrics = useLyrics(parsedArtist, parsedSong);
 
   return (
     <>

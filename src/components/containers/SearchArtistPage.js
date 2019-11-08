@@ -25,8 +25,8 @@ export default function SearchArtistPage() {
         handleSubmit={handleSubmit}
       />
       <PagingButtons 
-        pageUpFunction={handlePageUp}
-        pageDownFunction={handlePageDown}
+        handlePageUp={handlePageUp}
+        handlePageDown={handlePageDown}
         upDisable={upDisable}
         downDisable={downDisable}
       />
