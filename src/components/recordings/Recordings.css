@@ -2,4 +2,20 @@
   text-align: center;
   list-style: none;
   margin-bottom: 100px;
+  height: 65%;
+  overflow: auto;
+
+  li:hover {
+    transform: scale(1.1);
+  }
+
+  a {
+    color: #a55b5e;
+    text-decoration: none;
+    text-shadow: .5px .5px 1px #a5a5af;
+  }
+
+  a:hover {
+    color: #d96c87;
+  }
 }

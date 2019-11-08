@@ -1,11 +1,14 @@
 .Foot {
   text-align: center;
-  position: fixed;
-  bottom: 0;
   width: 100%;
-  background-color: #eeeeee;
+  position: absolute;
+  bottom: 0;
+  background-color: #a55b5e;
+  color: #eee2e1;
+  border-bottom: 1px solid #a5a5af;
 
   p {
     text-align: center;
+    text-shadow: 0px 1px 1px #a5a5af;
   }
 }

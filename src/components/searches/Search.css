@@ -1,7 +1,11 @@
 .Search {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
+  background-color: #deadac;
+  height: 50px;
+  border-bottom: 1px solid #b97e8073;
 
   input {
     width: 30%;
@@ -12,8 +16,18 @@
   }
 
   button {
-    width: 25%;
+    background-color: #c97288;
+    width: 20%;
+    max-width: 150px;
+    height: 36px;
     border-radius: 5px;
     font-size: 20pt;
+    border-color: #a55b5e;
+    color: #763d3eea;
+  }
+
+  button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
   }
 }

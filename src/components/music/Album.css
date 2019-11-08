@@ -1,12 +1,23 @@
 .Album {
-
-  background-color: #eeeeee;
+  background-color: #d96c87;
   text-align: center;
   padding: 5px;
   margin: 10px;
   border-radius: 5px;
+  border: 1px solid #a55b5e;
 
   img {
-    width: 100%;
+    width: 90%;
+    height: 50%;
   }
+  
+  a {
+    color: #f5edec;
+    text-shadow: .5px .5px 1px #a5a5af;
+  }
+}
+
+.Album:hover {
+  transform: scale(1.1);
+  box-shadow: 1px 1px 2px #a55b5e;
 }

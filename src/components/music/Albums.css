@@ -3,11 +3,11 @@
   flex-wrap: wrap;
   list-style: none;
   max-width: 80%;
-  margin: auto;
-  margin-bottom: 100px;
-  padding-top: 20px;
+  align-items: center;
+  margin: 10px auto;
 
   li {
     width: 25%;
+    max-height: 332px;
   }
 }

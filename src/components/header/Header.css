@@ -1,23 +1,39 @@
 .Head {
-  width: 100%;
-  margin-bottom: 20px;
-  background-color: #eee;
+  background-color: #a55b5e;
+  color: #f5edec;
   padding: 20px;
+  border-bottom: 1px solid #a5a5af;
   h1 {
     margin-top: 0;
+    height: 45px;
     text-align: center;
     font-size: 40pt;
+    text-shadow: 1px 1px 1px #a5a5af;
   }
   nav {
-    text-align: center; 
-    font-size: 15pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100%;
+    border: 1px solid;
+    width: 20%;
+    max-width: 160px;
+    height: 30px;
+    margin: 0 auto;
+    border-radius: 5px;
     a {
       text-decoration: none;
+      color: #f5edec;
+      text-shadow: .5px .5px .5px #a5a5af;
     }
 
     a:hover {
       cursor: pointer;
-      color: blue;
     }
+  }
+
+  nav:hover {
+    transform: scale(1.05);
+    box-shadow: 1px 2px 3px #a5a5af69;
   }
 } 
