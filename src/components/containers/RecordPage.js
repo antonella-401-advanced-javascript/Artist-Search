@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Recordings from '../recordings/Recordings';
-import getSongs from '../services/getSongs';
+import useRecordings from '../../hooks/useRecordings';
 
 export default function RecordPage({ match }) {
-  const [songs, updateSongs] = useState([]);
-
-  useEffect(() => {
-    getSongs(match.params.albumId)
-      .then(result => {
-        updateSongs(result);
-      });
-  }, [match.params.albumId]);
+  const songs = useRecordings(match.params.albumId);
 
   return (
     <>

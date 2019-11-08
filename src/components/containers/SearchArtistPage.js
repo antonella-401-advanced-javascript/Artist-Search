@@ -2,42 +2,19 @@ import React, { useState } from 'react';
 import Search from '../searches/Search';
 import PagingButtons from '../paging/PagingButtons';
 import Artists from '../artists/Artists';
-import getArtists from '../services/getArtists';
+import useArtists from '../../hooks/useArtists';
+import usePaging from '../../hooks/usePaging';
 
 export default function SearchArtistPage() {
   const [searchInput, updateSearchInput] = useState('');
-  const [artists, updateArtist] = useState([]);
-  const [page, updatePage] = useState(0);
-  const [upDisable, updateUpDisable] = useState(true);
-  const [downDisable, updateDownDisable] = useState(true);
+  const { page, updatePage, upDisable, downDisable, handlePageUp, handlePageDown } = usePaging();
+  const artists = useArtists(searchInput, page);
 
   const handleChange = ({ target }) => updateSearchInput(target.value);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    getArtists(searchInput, 0)
-      .then(res => {
-        updateArtist(res);
-        updateUpDisable(false);
-      });
-  };
-
-  const handlePageUp = () => {
-    updatePage(prevPage => prevPage + 1);
-    return getArtists(searchInput, page)
-      .then(res => {
-        updateArtist(res);
-        updateDownDisable(false);
-      });
-  };
-
-  const handlePageDown = () => {
-    updatePage(prevPage => prevPage - 1);
-    return getArtists(searchInput, page)
-      .then(res => {
-        updateArtist(res);
-        updateDownDisable(page === 0 ? true : false);
-      });
+    updatePage(0);
   };
 
   return (
