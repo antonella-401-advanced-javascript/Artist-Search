@@ -1,0 +1,7 @@
+.Lyric {
+  text-align: center;
+  font-size: 13pt;
+  margin-bottom: 100px;
+  height: 65%;
+  overflow: auto;
+}

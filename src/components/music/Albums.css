@@ -1,0 +1,13 @@
+.Albums {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  max-width: 80%;
+  align-items: center;
+  margin: 10px auto;
+
+  li {
+    width: 25%;
+    max-height: 332px;
+  }
+}
