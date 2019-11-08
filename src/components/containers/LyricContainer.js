@@ -14,7 +14,7 @@ export default function LyricContainer({ match }) {
       .then(result => {
         updateLyrics(result.lyrics);
       });
-  });
+  }, [parsedArtist, parsedSong]);
 
   return (
     <>

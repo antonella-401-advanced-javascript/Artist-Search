@@ -16,7 +16,7 @@ export default function Discography({ match }) {
         updateAlbum(result);
         updateUpDisable(false);
       });
-  });
+  }, [match.params.id, page]);
 
   const handlePageUp = () => {
     updatePage(prevPage => prevPage + 1);

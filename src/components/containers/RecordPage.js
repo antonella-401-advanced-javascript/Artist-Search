@@ -11,7 +11,7 @@ export default function RecordPage({ match }) {
       .then(result => {
         updateSongs(result);
       });
-  });
+  }, [match.params.albumId]);
 
   return (
     <>
